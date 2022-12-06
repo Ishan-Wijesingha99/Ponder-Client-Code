@@ -122,7 +122,7 @@ export const Login = (props) => {
               placeholder="Email..."
               name="email"
               value={formData.email}
-              error={errors.email ? true : false}
+              error={errors?.email ? true : false}
               onChange={changeFormData}
             />
 
@@ -132,7 +132,7 @@ export const Login = (props) => {
               placeholder="Password..."
               name="password"
               value={formData.password}
-              error={errors.password ? true : false}
+              error={errors?.password ? true : false}
               onChange={changeFormData}
             />
 
