@@ -1,17 +1,98 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from 'react';
+import { Button, Form } from 'semantic-ui-react';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
-import { Button, Form } from "semantic-ui-react";
+import { AuthContext } from '../context/auth';
+import { useForm } from '../util/hooks';
 
-import { useMutation } from "@apollo/client";
-import { gql } from 'graphql-tag'
+function Register(props) {
+  const context = useContext(AuthContext);
+  const [errors, setErrors] = useState({});
 
-import { AuthContext } from "../context/auth";
+  const { onChange, onSubmit, values } = useForm(registerUser, {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
 
-import { useNavigate } from "react-router-dom";
+  const [addUser, { loading }] = useMutation(REGISTER_USER, {
+    update(
+      _,
+      {
+        data: { register: userData }
+      }
+    ) {
+      context.login(userData);
+      props.history.push('/');
+    },
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+    },
+    variables: values
+  });
 
-import { AlreadyLoggedIn } from "../components/AlreadyLoggedIn";
+  function registerUser() {
+    addUser();
+  }
 
-
+  return (
+    <div className="form-container">
+      <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+        <h1>Register</h1>
+        <Form.Input
+          label="Username"
+          placeholder="Username.."
+          name="username"
+          type="text"
+          value={values.username}
+          error={errors.username ? true : false}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Email"
+          placeholder="Email.."
+          name="email"
+          type="email"
+          value={values.email}
+          error={errors.email ? true : false}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Password"
+          placeholder="Password.."
+          name="password"
+          type="password"
+          value={values.password}
+          error={errors.password ? true : false}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Confirm Password"
+          placeholder="Confirm Password.."
+          name="confirmPassword"
+          type="password"
+          value={values.confirmPassword}
+          error={errors.confirmPassword ? true : false}
+          onChange={onChange}
+        />
+        <Button type="submit" primary>
+          Register
+        </Button>
+      </Form>
+      {Object.keys(errors).length > 0 && (
+        <div className="ui error message">
+          <ul className="list">
+            {Object.values(errors).map((value) => (
+              <li key={value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
 
 const REGISTER_USER = gql`
   mutation register(
@@ -22,9 +103,9 @@ const REGISTER_USER = gql`
   ) {
     register(
       registerInput: {
-        username: $username,
-        email: $email,
-        password: $password,
+        username: $username
+        email: $email
+        password: $password
         confirmPassword: $confirmPassword
       }
     ) {
@@ -35,159 +116,6 @@ const REGISTER_USER = gql`
       token
     }
   }
-`
+`;
 
-
-
-export const Register = (props) => {
-
-  // even when you are logged in, the user can still type /register or /login in the url and access those pages, we need to make sure they can't access these pages
-  // this can be easily solved by conditionally rendering the register form, if the user is logged in, do not render the form
-
-  const context = useContext(AuthContext)
-
-  const navigate = useNavigate()
-
-  const [errors, setErrors] = useState({})
-
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
-
-  // the update function will be triggered if the mutation is successful
-  const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(_, result) {
-      // if addUser() was successful, then execute the following code
-      console.log(result)
-
-      // even though we are registering, the login function attached to the context can be used for both registering and logging in
-      context.login(result.data.register)
-
-      
-      // finally, redirect to the homepage
-      navigate('/')
-    },
-    onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.fields)
-      console.log(errors)
-    },
-    variables: formData
-  })
-
-
-
-  const changeFormData = event => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    })
-  }
-
-  const onSubmit = event => {
-    event.preventDefault()
-
-    // no need to validate form data because we've already done server side validation, no point validating on the client as well
-
-    // so just use the addUser mutation
-    addUser()
-  }
-
-
-
-  return (
-    <div className="form-container-div">
-      
-      {
-        // render form if token exists in local storage, render button to take user back to homepage if not
-        localStorage.getItem('token')
-
-        ?
-
-        (
-          <AlreadyLoggedIn />
-        )
-
-        :
-
-        (
-          <Form
-          onSubmit={onSubmit}
-          noValidate
-          className={loading ? 'loading' : ''}
-          >
-
-            <h1>Register</h1>
-
-            <Form.Input 
-              type="text"
-              label="Username"
-              placeholder="Username..."
-              name="username"
-              value={formData.username}
-              // error={errors?.username == undefined ? true : false}
-              onChange={changeFormData}
-            />
-
-            <Form.Input
-              type="email"
-              label="Email"
-              placeholder="Email..."
-              name="email"
-              value={formData.email}
-              // error={errors?.email == undefined ? true : false}
-              onChange={changeFormData}
-            />
-
-            <Form.Input
-              type="password"
-              label="Password"
-              placeholder="Password..."
-              name="password"
-              value={formData.password}
-              // error={errors?.password == undefined ? true : false}
-              onChange={changeFormData}
-            />
-
-            <Form.Input
-              type="password"
-              label="Confirm Password"
-              placeholder="Confirm Password..."
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              // error={errors?.confirmPassword == undefined ? true : false}
-              onChange={changeFormData}
-            />
-
-            <Button type="submit" primary>
-              Register
-            </Button>
-
-          </Form>
-        )
-      }
-
-
-
-      {/* this will only be rendered if there are properties in the error object, which is only possible if the form is being rendered, so you don't need to worry about this component being rendered if the form isn't also rendered */}
-      {/* {
-        Object.keys(errors).length > 0 && (
-
-          <div className="ui error message">
-            <ul className="list">
-
-              {Object.values(errors).map(errorString => (
-                <li key={errorString}>{errorString}</li>
-              ))}
-              
-            </ul>
-          </div>
-
-        )
-      } */}
-
-    </div>
-  )
-}
+export default Register;
