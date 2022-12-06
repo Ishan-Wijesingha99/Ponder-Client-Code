@@ -147,7 +147,7 @@ export const Login = (props) => {
 
 
       {/* this will only be rendered if there are properties in the error object, which is only possible if the form is being rendered, so you don't need to worry about this component being rendered if the form isn't also rendered */}
-      {
+      {/* {
         Object.keys(errors).length > 0 && (
 
           <div className="ui error message">
@@ -161,7 +161,7 @@ export const Login = (props) => {
           </div>
 
         )
-      }
+      } */}
 
     </div>
   )
