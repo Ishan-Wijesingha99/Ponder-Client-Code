@@ -6,8 +6,12 @@ import gql from 'graphql-tag';
 import { AuthContext } from '../context/auth';
 import { useForm } from '../util/hooks';
 
+
+
 function Login(props) {
+
   const context = useContext(AuthContext);
+
   const [errors, setErrors] = useState({});
 
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
@@ -31,9 +35,85 @@ function Login(props) {
     variables: values
   });
 
+
+
   function loginUserCallback() {
     loginUser();
   }
+
+
+
+  return (
+    <div className='form-container'>
+
+      <form
+      onSubmit={onSubmit}
+      noValidate
+      className='login-form'
+      >
+
+        <h1 className='login-form-title'>Login</h1>
+
+        <label
+        htmlFor="Username"
+        className='login-label'
+        >
+          Username
+        </label>
+        <input
+        className='login-input-field'
+        type="text"
+        label="Username"
+        placeholder="Username..."
+        name="username"
+        value={values.username}
+        error={errors.username ? true : false}
+        onChange={onChange}
+        />
+
+        <label
+        htmlFor="Password"
+        className='login-label'
+        >
+          Password
+        </label>
+        <input
+        className='login-input-field'
+        label="Password"
+        placeholder="Password..."
+        name="password"
+        type="password"
+        value={values.password}
+        error={errors.password ? true : false}
+        onChange={onChange}
+        />
+
+        <button
+        type='submit'
+        className='form-submit-button'
+        >
+          Login
+        </button>
+
+      </form>
+
+      {
+      Object.keys(errors).length > 0 && (
+        <ul className="error-message-list">
+          {Object.values(errors).map(error => (
+            <li
+            key={error}
+            className="error-message-li"
+            >
+              {error}
+            </li>
+          ))}
+        </ul>
+      )
+      }
+
+    </div>
+  )
 
   return (
     <div className="form-container">
