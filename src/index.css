@@ -19,7 +19,7 @@ body {
 
 /* postcard css */
 .postcard {
-  margin-bottom: 2rem;
+  margin-top: 3rem;
   background-color: #85C7F2;
   padding: 1rem;
   border-radius: 1rem;
@@ -44,7 +44,7 @@ body {
 .postcard-time {
   margin-top: 5px;
   font-style: italic;
-  margin-bottom: 0;
+  margin-bottom: 2px;
 }
 
 .postcard-top {
@@ -60,13 +60,15 @@ body {
 .postcard-span {
   width: 100%;
   height: 2px;
-  margin-top: 2px;
   background-color: black;
   display: block;
 }
 
 .postcard-body {
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .postcard-button-section {
@@ -76,7 +78,13 @@ body {
   margin-top: 1rem;
 }
 
-.comment-button-link {
+.like-and-comment-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-like-button-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -85,15 +93,60 @@ body {
   padding: 0.5rem;
   border-radius: 1rem;
   background-color: black;
+  margin-left: 5px;
 }
 
-.comment-button-link:hover {
+.comment-like-button-link:hover {
   scale: 1.05;
   transition: 200ms;
+  cursor: pointer;
 }
 
-.comment-button-commentCount {
+.comment-button-commentCount, .like-button-likeCount {
   font-size: 1.2rem;
   color: #85C7F2;
-  align-self: flex-end;
+  font-family: sans-serif;
+  font-weight: 900;
+}
+
+
+
+
+/* post form */
+.post-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #85C7F2;
+  width: 332px;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px black solid;
+}
+
+.create-post-form-textarea {
+  border-radius: 1rem;
+  border: 2px solid black;
+  padding: 0.5rem;
+  width: 80%;
+}
+
+.post-form-submit-button {
+  width: 80px;
+  height: 40px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  color: #85C7F2;
+  background-color: black;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+}
+
+.post-form-submit-button:hover {
+  scale: 1.05;
+  transition: 200ms;
+  cursor: pointer;
 }

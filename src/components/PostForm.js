@@ -6,6 +6,8 @@ import { useMutation } from '@apollo/react-hooks';
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
+
+
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
     body: ''
@@ -26,6 +28,38 @@ function PostForm() {
   function createPostCallback() {
     createPost();
   }
+
+
+  return (
+    <>
+      <form
+      onSubmit={onSubmit}
+      className="post-form"
+      >
+        <h2 className='post-form-title'>Create a post:</h2>
+
+        <textarea
+        placeholder="Hi World!"
+        name="body"
+        onChange={onChange}
+        value={values.body}
+        error={error ? true : false}
+        className='create-post-form-textarea'
+        rows="3"
+        style={{
+          resize: 'none'
+        }}
+        />
+
+        <button
+        type='submit'
+        className='post-form-submit-button'
+        >
+          Post
+        </button>
+      </form>
+    </>
+  )
 
   return (
     <>

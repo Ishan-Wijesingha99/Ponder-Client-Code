@@ -6,13 +6,22 @@ import { Button, Label, Icon } from 'semantic-ui-react';
 
 import MyPopup from '../util/MyPopup';
 
+import { BiLike } from 'react-icons/bi'
+
+
+
+
+
 function LikeButton({ user, post: { id, likeCount, likes } }) {
+
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
+
     if (user && likes.find((like) => like.username === user.username)) {
       setLiked(true);
     } else setLiked(false);
+
   }, [user, likes]);
 
   const [likePost] = useMutation(LIKE_POST_MUTATION, {
@@ -21,28 +30,54 @@ function LikeButton({ user, post: { id, likeCount, likes } }) {
 
   const likeButton = user ? (
     liked ? (
-      <Button color="teal">
-        <Icon name="heart" />
-      </Button>
+      <button
+      className='comment-like-button-link'
+      onClick={likePost}
+      style={{
+        backgroundColor: '#85C7F2',
+        border: '2px solid black'
+      }}
+      >
+        <BiLike 
+        size={25}
+        color='black'
+        />
+
+        <p
+        className='like-button-likeCount'
+        style={{
+          color: 'black'
+        }}
+        >{likeCount}</p>
+      </button>
     ) : (
-      <Button color="teal" basic>
-        <Icon name="heart" />
-      </Button>
+      <button
+      className='comment-like-button-link'
+      onClick={likePost}
+      >
+        <BiLike
+        size={25}
+        color='#85C7F2'
+        />
+
+        <p className='like-button-likeCount'>{likeCount}</p>
+      </button>
     )
   ) : (
-    <Button as={Link} to="/login" color="teal" basic>
-      <Icon name="heart" />
-    </Button>
+    <Link
+    to="/login"
+    className='comment-like-button-link'
+    >
+      <BiLike
+      size={25}
+      color='#85C7F2'
+      />
+
+      <p className='like-button-likeCount'>{likeCount}</p>
+    </Link>
   );
 
-  return (
-    <Button as="div" labelPosition="right" onClick={likePost}>
-      <MyPopup content={liked ? 'Unlike' : 'Like'}>{likeButton}</MyPopup>
-      <Label basic color="teal" pointing="left">
-        {likeCount}
-      </Label>
-    </Button>
-  );
+  return likeButton
 }
 
 const LIKE_POST_MUTATION = gql`
