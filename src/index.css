@@ -1,0 +1,99 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+/* postcard css */
+.postcard {
+  margin-bottom: 2rem;
+  background-color: #85C7F2;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px black solid;
+}
+
+.postcard-username {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.postcard-time-link {
+  color: black;
+}
+
+.postcard-time-link:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.postcard-time {
+  margin-top: 5px;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.postcard-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 300px;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.postcard-span {
+  width: 100%;
+  height: 2px;
+  margin-top: 2px;
+  background-color: black;
+  display: block;
+}
+
+.postcard-body {
+  margin-top: 1rem;
+}
+
+.postcard-button-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.comment-button-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+  height: 40px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: black;
+}
+
+.comment-button-link:hover {
+  scale: 1.05;
+  transition: 200ms;
+}
+
+.comment-button-commentCount {
+  font-size: 1.2rem;
+  color: #85C7F2;
+  align-self: flex-end;
+}
