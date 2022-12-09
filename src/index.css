@@ -9,11 +9,18 @@ body {
   font-family: sans-serif;
 }
 
+
+
 .home-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+#home-title {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 
@@ -73,7 +80,7 @@ body {
 
 .postcard-button-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 1rem;
 }
@@ -107,6 +114,23 @@ body {
   color: #85C7F2;
   font-family: sans-serif;
   font-weight: 900;
+}
+
+
+
+/* delete button */
+.delete-button {
+  background-color: black;
+  margin-left: 5px;
+  height: 40px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.delete-button:hover {
+  scale: 1.05;
+  transition: 200ms;
+  cursor: pointer;
 }
 
 

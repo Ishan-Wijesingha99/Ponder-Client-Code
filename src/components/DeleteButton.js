@@ -6,7 +6,12 @@ import { Button, Confirm, Icon } from 'semantic-ui-react';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 import MyPopup from '../util/MyPopup';
 
+import { MdOutlineDelete } from 'react-icons/md'
+
+
+
 function DeleteButton({ postId, commentId, callback }) {
+
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION;
@@ -27,27 +32,34 @@ function DeleteButton({ postId, commentId, callback }) {
       postId,
       commentId
     }
-  });
+  })
+
+
+
   return (
     <>
-      <MyPopup content={commentId ? 'Delete comment' : 'Delete post'}>
-        <Button
-          as="div"
-          color="red"
-          floated="right"
-          onClick={() => setConfirmOpen(true)}
-        >
-          <Icon name="trash" style={{ margin: 0 }} />
-        </Button>
-      </MyPopup>
+
+      <button
+      className='delete-button'
+      onClick={() => setConfirmOpen(true)}
+      >
+        <MdOutlineDelete
+        size={25}
+        color="red"
+        />
+      </button>
+
       <Confirm
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}
         onConfirm={deletePostOrMutation}
       />
+      
     </>
   );
 }
+
+
 
 const DELETE_POST_MUTATION = gql`
   mutation deletePost($postId: ID!) {

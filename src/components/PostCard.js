@@ -38,11 +38,13 @@ function PostCard({
 
         <div className='postcard-button-section'>
           <div className='like-and-comment-buttons'>
+            {/* like button */}
             <LikeButton
             user={user}
             post={{ id, likes, likeCount }}
             />
 
+            {/* comment button */}
             <Link
             to={`/posts/${id}`}
             className="comment-like-button-link"
@@ -56,6 +58,15 @@ function PostCard({
             </Link>
           </div>
 
+          {/* delete button */}
+          {/* if user is true, we are logged in */}
+          {/* if user.username === username, that means the post belongs to the currently logged in user */}
+          {/* if both of these are true, only then render the delete button */}
+          {user && user.username === username && (
+            <DeleteButton
+            postId={id}
+            />
+          )}
 
           
         </div>
