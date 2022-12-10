@@ -56,7 +56,7 @@ function Login(props) {
 
         <label
         htmlFor="Username"
-        className='login-label'
+        className='input-label'
         >
           Username
         </label>
@@ -73,7 +73,7 @@ function Login(props) {
 
         <label
         htmlFor="Password"
-        className='login-label'
+        className='input-label'
         >
           Password
         </label>
