@@ -5,7 +5,8 @@ import { createHttpLink } from 'apollo-link-http'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { setContext } from 'apollo-link-context'
 
-import App from './App'
+import { App } from './App'
+
 
 
 // create apollo client in these 3 steps

@@ -33,7 +33,7 @@ const CREATE_POST_MUTATION = gql`
 
 
 
-const PostForm = () => {
+export const PostForm = () => {
 
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
     body: ''
@@ -122,4 +122,3 @@ const PostForm = () => {
 
 
 
-export default PostForm

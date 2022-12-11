@@ -5,8 +5,8 @@ import moment from 'moment'
 import { FaComments } from 'react-icons/fa'
 
 import { AuthContext } from '../context/auth'
-import LikeButton from '../components/LikeButton'
-import DeleteButton from '../components/DeleteButton'
+import { LikeButton } from '../components/LikeButton'
+import { DeleteButton } from '../components/DeleteButton'
 
 
 
@@ -243,4 +243,3 @@ export const SinglePost = props => {
 
 
 
-export default SinglePost

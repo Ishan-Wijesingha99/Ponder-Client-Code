@@ -99,4 +99,3 @@ export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
 
 
 
-export default LikeButton

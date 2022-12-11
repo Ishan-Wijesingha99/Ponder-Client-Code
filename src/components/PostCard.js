@@ -4,8 +4,8 @@ import moment from 'moment'
 import { FaComments } from 'react-icons/fa'
 
 import { AuthContext } from '../context/auth'
-import LikeButton from './LikeButton'
-import DeleteButton from './DeleteButton'
+import { LikeButton } from './LikeButton'
+import { DeleteButton } from './DeleteButton'
 
 
 
@@ -71,4 +71,3 @@ export const PostCard = ({
   )
 }
 
-export default PostCard

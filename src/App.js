@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 
 import { AuthProvider } from './context/auth'
-import AuthRoute from './util/AuthRoute'
+import { AuthRoute } from './util/AuthRoute'
 
-import MenuBar from './components/Navbar'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import SinglePost from './pages/SinglePost'
+import { Navbar } from './components/Navbar'
+import { Home } from './pages/Home'
+import { Login } from './pages/Login'
+import { Register } from './pages/Register'
+import { SinglePost } from './pages/SinglePost'
 
 
 
@@ -18,7 +18,7 @@ export const App = () => {
   return (
     <AuthProvider>
       <Router>
-          <MenuBar />
+          <Navbar />
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
@@ -30,4 +30,3 @@ export const App = () => {
 
 
 
-export default App

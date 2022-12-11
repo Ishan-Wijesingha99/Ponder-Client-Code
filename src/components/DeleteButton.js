@@ -8,7 +8,7 @@ import { MdOutlineDelete } from 'react-icons/md'
 
 
 
-function DeleteButton({ postId, commentId, callback }) {
+export const DeleteButton = ({ postId, commentId, callback }) => {
 
   const [confirmOpen, setConfirmOpen] = useState(false)
 
@@ -84,5 +84,3 @@ const DELETE_COMMENT_MUTATION = gql`
     }
   }
 `
-
-export default DeleteButton
