@@ -188,6 +188,9 @@ body {
   padding: 1rem;
   border-radius: 1rem;
   border: 2px black solid;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .login-form-title {
