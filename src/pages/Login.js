@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { Button, Form } from 'semantic-ui-react'
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -10,6 +9,9 @@ import { useForm } from '../util/hooks'
 
 export const Login = props => {
 
+  // even when you are logged in, the user can still type /register or /login in the url and access those pages, we need to make sure they can't access these pages
+  // this can be easily solved by conditionally rendering the login form, if the user is logged in, do not render the form
+
   const context = useContext(AuthContext)
 
   const [errors, setErrors] = useState({})
@@ -19,14 +21,16 @@ export const Login = props => {
     password: ''
   })
 
+  // the update function will be triggered if the mutation is successful
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(
-      _,
-      {
-        data: { login: userData }
-      }
-    ) {
+    update(_, { data: { login: userData } }) {
+      // if loginUser() was successful, then execute the following code
+
+      // use login function which is attached to the context
+      // result.data.login is the userData
       context.login(userData)
+
+      // finally, redirect to the homepage
       props.history.push('/')
     },
     onError(err) {
@@ -97,6 +101,7 @@ export const Login = props => {
 
       </form>
 
+      {/* this will only be rendered if there are properties in the error object, which is only possible if the form is being rendered, so you don't need to worry about this component being rendered if the form isn't also rendered */}
       {
       Object.keys(errors).length > 0 && (
         <ul className="error-message-list">

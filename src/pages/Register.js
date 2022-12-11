@@ -9,6 +9,9 @@ import { useForm } from '../util/hooks'
 
 export const Register = props => {
 
+  // even when you are logged in, the user can still type /register or /login in the url and access those pages, we need to make sure they can't access these pages
+  // this can be easily solved by conditionally rendering the register form, if the user is logged in, do not render the form
+
   const context = useContext(AuthContext)
 
   const [errors, setErrors] = useState({})
@@ -20,14 +23,15 @@ export const Register = props => {
     confirmPassword: ''
   })
 
+  // the update function will be triggered if the mutation is successful
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(
-      _,
-      {
-        data: { register: userData }
-      }
-    ) {
+    update(_, { data: { register: userData } }) {
+      // if addUser() was successful, then execute the following code
+
+      // even though we are registering, the login function attached to the context can be used for both registering and logging in
       context.login(userData)
+
+      // finally, redirect to the homepage
       props.history.push('/')
     },
     onError(err) {
@@ -131,6 +135,7 @@ export const Register = props => {
 
       </form>
 
+      {/* this will only be rendered if there are properties in the error object, which is only possible if the form is being rendered, so you don't need to worry about this component being rendered if the form isn't also rendered */}
       {
       Object.keys(errors).length > 0 && (
         <ul className="error-message-list">

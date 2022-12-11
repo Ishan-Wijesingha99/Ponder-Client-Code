@@ -65,6 +65,7 @@ export const SinglePost = props => {
 
   const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
+      // once a comment has been created in the database via the CREATE_COMMENT_MUTATION, we need to reset the body of the comment input field to an empty string
       setComment('')
     },
     variables: {
@@ -86,7 +87,7 @@ export const SinglePost = props => {
 
 
   let postMarkup
-  
+
   if (!getPost) {
     postMarkup = <p id='single-post-loading'>Loading post..</p>
   } else {
@@ -157,6 +158,7 @@ export const SinglePost = props => {
         </div>
         
         {/* post comment section */}
+        {/* if user is true, that means the user is logged in, therefore this input should be rendered so that they can comment */}
         {user && (
           <div className='write-comment-section'>
 

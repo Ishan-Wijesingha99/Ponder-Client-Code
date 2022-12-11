@@ -12,6 +12,9 @@ export const Home = () => {
 
   const { user } = useContext(AuthContext)
 
+  // loading is a boolean which you can use to set up a loading screen/component
+  // data is an object that has only one property, the getPosts property, which is an array
+  // do not deconstruct the getPosts property out of the data object, it leads to bugs
   const { loading, data: { getPosts: posts } } = useQuery(FETCH_POSTS_QUERY)
 
 
@@ -20,6 +23,7 @@ export const Home = () => {
     <div className='home-container'>
       <h1 id='home-title'>Recent Posts</h1>
 
+      {/* if the user exists, that means we are logged in, so in that case, render this form */}
       {user && (   
         <PostForm />
       )}
