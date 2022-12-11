@@ -335,3 +335,65 @@ body {
 #last-comment-span {
   margin-bottom: 1rem;
 }
+
+/* navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #85C7F2;
+}
+
+.navbar-logo {
+  width: 30px;
+}
+
+.navbar-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#navbar-title {
+  margin-left: 3px;
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 3px;
+  color: #75be5e;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.username-navbar-link, .logout-navbar-link, .home-navbar-link, .login-navbar-link, .register-navbar-link {
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.home-navbar-link, .login-navbar-link, .register-navbar-link {
+  margin-left: 1.5rem;
+}
+
+.username-navbar-link:hover, .logout-navbar-link:hover, .home-navbar-link:hover, .login-navbar-link:hover, .register-navbar-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  scale: 1.05;
+  transition: 200ms;
+  color: black;
+}
+
+.navbar-middle:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  scale: 1.05;
+  transition: 200ms;
+  color: black;
+}
+
