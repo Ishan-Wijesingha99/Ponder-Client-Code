@@ -1,18 +1,17 @@
-import React, { useContext, useState } from 'react';
-import { Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 
-
-import { AuthContext } from '../context/auth';
+import { AuthContext } from '../context/auth'
 import logo from '../assets/logo.png'
 
 
-function MenuBar() {
-  const { user, logout } = useContext(AuthContext);
+
+export const Navbar = () => {
+  const { user, logout } = useContext(AuthContext)
 
 
 
-  const menuBar = user ? (
+  const Navbar = user ? (
     <div className='navbar'>
 
       <div className='navbar-left'>
@@ -86,7 +85,7 @@ function MenuBar() {
 
 
 
-  return menuBar;
+  return Navbar
 }
 
-export default MenuBar;
+export default Navbar

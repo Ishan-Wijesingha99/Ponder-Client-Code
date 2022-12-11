@@ -1,32 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-import { Button, Label, Icon } from 'semantic-ui-react';
-
-import MyPopup from '../util/MyPopup';
-
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useMutation } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 import { BiLike } from 'react-icons/bi'
 
 
 
+const LIKE_POST_MUTATION = gql`
+  mutation likePost($postId: ID!) {
+    likePost(postId: $postId) {
+      id
+      likes {
+        id
+        username
+      }
+      likeCount
+    }
+  }
+`
 
 
-function LikeButton({ user, post: { id, likeCount, likes } }) {
 
-  const [liked, setLiked] = useState(false);
+export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
+
+  const [liked, setLiked] = useState(false)
 
   useEffect(() => {
-
+    // if user is true, that means the user is logged in
+    // then we loop through the likes array, and for each likeObject, we see if the username property matches user.username, if it does, true will be returned, this means the currently logged in user has already liked the post
     if (user && likes.find((like) => like.username === user.username)) {
-      setLiked(true);
-    } else setLiked(false);
+      // if both are true, then execute the following code
+      setLiked(true)
+    } else {
+      setLiked(false)
+    }
 
-  }, [user, likes]);
+  }, [user, likes])
+
+
 
   const [likePost] = useMutation(LIKE_POST_MUTATION, {
     variables: { postId: id }
-  });
+  })
+
+  
 
   const likeButton = user ? (
     liked ? (
@@ -75,22 +92,11 @@ function LikeButton({ user, post: { id, likeCount, likes } }) {
 
       <p className='like-button-likeCount'>{likeCount}</p>
     </Link>
-  );
+  )
 
   return likeButton
 }
 
-const LIKE_POST_MUTATION = gql`
-  mutation likePost($postId: ID!) {
-    likePost(postId: $postId) {
-      id
-      likes {
-        id
-        username
-      }
-      likeCount
-    }
-  }
-`;
 
-export default LikeButton;
+
+export default LikeButton

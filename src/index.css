@@ -1,4 +1,4 @@
-
+/* general CSS */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,6 +11,7 @@ body {
 
 
 
+/* home page */
 .home-container {
   display: flex;
   align-items: center;
@@ -22,6 +23,11 @@ body {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+#home-loading-posts {
+  margin-top: 4rem;
+}
+
 
 
 /* postcard css */
@@ -46,6 +52,7 @@ body {
 
 .postcard-time-link {
   color: black;
+  text-decoration: none;
 }
 
 .postcard-time-link:hover {
@@ -126,7 +133,6 @@ body {
   transition: 200ms;
   cursor: pointer;
 }
-
 
 
 
@@ -237,10 +243,13 @@ body {
   font-weight: bold;
 }
 
+
+
 /* register form */
 .register-form-title {
   margin-bottom: 2rem;
 }
+
 
 
 /* single post page */
@@ -336,6 +345,8 @@ body {
   margin-bottom: 1rem;
 }
 
+
+
 /* navbar */
 .navbar {
   display: flex;
@@ -343,6 +354,7 @@ body {
   justify-content: space-between;
   padding: 1rem 2rem;
   background-color: #85C7F2;
+  border-bottom: 2px solid black;
 }
 
 .navbar-logo {
