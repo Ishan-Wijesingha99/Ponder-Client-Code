@@ -58,7 +58,7 @@ function SinglePost(props) {
 
   let postMarkup;
   if (!getPost) {
-    postMarkup = <p>Loading post..</p>;
+    postMarkup = <p id='single-post-loading'>Loading post..</p>;
   } else {
     const {
       id,
@@ -163,7 +163,6 @@ function SinglePost(props) {
         )}
         
         {/* all comments section */}
-        {/* the final thing to do on this page, style the comment section, then check if everything works fine, then we're done with this element!!! */}
         <div className='comments-section'>
 
           {
@@ -173,11 +172,18 @@ function SinglePost(props) {
             key={comment.id}
             >
 
-              <p>{comment.username}</p>
+              <p id='comment-username'>{comment.username}</p>
 
-              <p>{moment.unix(createdAt/1000).fromNow()}</p>
+              <p id='comment-time'>{moment.unix(createdAt/1000).fromNow()}</p>
 
-              <p>{comment.body}</p>
+              <span className='postcard-span'></span>
+
+              <p id='comment-body'>{comment.body}</p>
+
+              <span
+              className='postcard-span'
+              id='last-comment-span'
+              ></span>
 
               {user && user.username === comment.username && (
 
