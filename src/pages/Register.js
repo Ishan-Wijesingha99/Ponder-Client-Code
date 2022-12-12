@@ -187,7 +187,7 @@ export const Register = props => {
       {
       Object.keys(errors).length > 0 && (
         <ul className="error-message-list">
-          {Object.formData(errors).map(error => (
+          {Object.values(errors).map(error => (
             <li
             key={error}
             className="error-message-li"
