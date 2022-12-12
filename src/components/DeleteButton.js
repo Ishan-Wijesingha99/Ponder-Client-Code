@@ -6,6 +6,9 @@ import { FETCH_POSTS_QUERY } from '../util/graphql'
 
 import { MdOutlineDelete } from 'react-icons/md'
 
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
 
 
 export const DeleteButton = ({ postId, commentId, callback }) => {
@@ -43,6 +46,23 @@ export const DeleteButton = ({ postId, commentId, callback }) => {
     }
   })
 
+  const buttonOnClick = () => {
+    confirmAlert({
+      title: 'Confirm to delete',
+      message: 'Are you sure you want to delete this?',
+      buttons: [
+        {
+          label: 'yes',
+          onClick: () => deletePostOrMutation()
+        },
+        {
+          label: 'No',
+          onClick: () => console.log('clicked no')
+        }
+      ]
+    })
+  }
+
 
 
   return (
@@ -50,7 +70,7 @@ export const DeleteButton = ({ postId, commentId, callback }) => {
 
       <button
       className='delete-button'
-      onClick={deletePostOrMutation}
+      onClick={buttonOnClick}
       >
         <MdOutlineDelete
         size={25}
