@@ -412,3 +412,43 @@ body {
   color: black;
 }
 
+
+
+/* 404 page */
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#not-found-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#not-found-text {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 4rem;
+}
+
+.home-button {
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #85C7F2;
+  background-color: black;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  scale: 1.05;
+  transition: 200ms;
+  cursor: pointer;
+}
