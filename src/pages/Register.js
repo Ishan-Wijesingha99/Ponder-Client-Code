@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 
 import { AuthContext } from '../context/auth'
 import { useForm } from '../util/hooks'
+import { AlreadyLoggedIn } from '../components/AlreadyLoggedIn'
 
 
 
@@ -50,90 +51,108 @@ export const Register = props => {
 
   return (
     <div className='form-container'>
+
+
+      {
+        // render form if token doesn't exist in local storage, render button to take user back to homepage if it already exists
+        localStorage.getItem('token')
+
+        ?
+
+        (
+          <AlreadyLoggedIn />
+        )
+
+        :
+
+        (
+          <form
+          onSubmit={onSubmit}
+          noValidate
+          className='register-form'
+          >
+            <h1 className='register-form-title'>Register</h1>
+
+            <label
+            htmlFor="Username"
+            className='input-label'
+            >
+              Username
+            </label>
+            <input
+            type="text"
+            label="Username"
+            placeholder="Username..."
+            name="username"
+            value={values.username}
+            error={errors.username ? true : false}
+            onChange={onChange}
+            className='login-input-field'
+            />
+
+            <label
+            htmlFor="Email"
+            className='input-label'
+            >
+              Email
+            </label>
+            <input
+            type="text"
+            label="Email"
+            placeholder="Email..."
+            name="email"
+            value={values.email}
+            error={errors.email ? true : false}
+            onChange={onChange}
+            className='login-input-field'
+            />
+
+            <label
+            htmlFor="Password"
+            className='input-label'
+            >
+              Password
+            </label>
+            <input
+            type="password"
+            label="Password"
+            placeholder="Password..."
+            name="password"
+            value={values.password}
+            error={errors.password ? true : false}
+            onChange={onChange}
+            className='login-input-field'
+            />
+
+            <label
+            htmlFor="Confirm Password"
+            className='input-label'
+            >
+              Confirm Password
+            </label>
+            <input
+            type="password"
+            label="Confirm Password"
+            placeholder="Confirm Password..."
+            name="confirmPassword"
+            value={values.confirmPassword}
+            error={errors.confirmPassword ? true : false}
+            onChange={onChange}
+            className='login-input-field'
+            />
+
+            <button
+            type='submit'
+            className='form-submit-button'
+            >
+              Register
+            </button>
+
+          </form>
+        )
+      }
       
-      <form
-      onSubmit={onSubmit}
-      noValidate
-      className='register-form'
-      >
-        <h1 className='register-form-title'>Register</h1>
-
-        <label
-        htmlFor="Username"
-        className='input-label'
-        >
-          Username
-        </label>
-        <input
-        type="text"
-        label="Username"
-        placeholder="Username..."
-        name="username"
-        value={values.username}
-        error={errors.username ? true : false}
-        onChange={onChange}
-        className='login-input-field'
-        />
-
-        <label
-        htmlFor="Email"
-        className='input-label'
-        >
-          Email
-        </label>
-        <input
-        type="text"
-        label="Email"
-        placeholder="Email..."
-        name="email"
-        value={values.email}
-        error={errors.email ? true : false}
-        onChange={onChange}
-        className='login-input-field'
-        />
-
-        <label
-        htmlFor="Password"
-        className='input-label'
-        >
-          Password
-        </label>
-        <input
-        type="password"
-        label="Password"
-        placeholder="Password..."
-        name="password"
-        value={values.password}
-        error={errors.password ? true : false}
-        onChange={onChange}
-        className='login-input-field'
-        />
-
-        <label
-        htmlFor="Confirm Password"
-        className='input-label'
-        >
-          Confirm Password
-        </label>
-        <input
-        type="password"
-        label="Confirm Password"
-        placeholder="Confirm Password..."
-        name="confirmPassword"
-        value={values.confirmPassword}
-        error={errors.confirmPassword ? true : false}
-        onChange={onChange}
-        className='login-input-field'
-        />
-
-        <button
-        type='submit'
-        className='form-submit-button'
-        >
-          Register
-        </button>
-
-      </form>
+      
 
       {/* this will only be rendered if there are properties in the error object, which is only possible if the form is being rendered, so you don't need to worry about this component being rendered if the form isn't also rendered */}
       {
@@ -150,6 +169,7 @@ export const Register = props => {
         </ul>
       )
       }
+      
     </div>
   )
 }
