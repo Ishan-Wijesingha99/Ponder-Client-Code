@@ -246,6 +246,12 @@ body {
   font-weight: bold;
 }
 
+.loading-form-submission {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 2rem;
+  font-weight: bold;
+}
 
 
 /* register form */
