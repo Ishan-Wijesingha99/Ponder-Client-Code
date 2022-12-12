@@ -7,6 +7,7 @@ import logo from '../assets/logo.png'
 
 
 export const Navbar = () => {
+
   // destructure user object and logout immediately from context
   const { user, logout } = useContext(AuthContext)
 
@@ -83,8 +84,6 @@ export const Navbar = () => {
       
     </div>
   )
-
-
 
   return Navbar
 }

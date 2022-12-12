@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+
 import { useQuery } from '@apollo/react-hooks'
 
 import { AuthContext } from '../context/auth'
@@ -14,7 +15,6 @@ export const Home = () => {
 
   // loading is a boolean which you can use to set up a loading screen/component
   // data is an object that has only one property, the getPosts property, which is an array
-  // do not deconstruct the getPosts property out of the data object, it leads to bugs
   const { loading, data: { getPosts: posts } } = useQuery(FETCH_POSTS_QUERY)
 
 

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 import { FaComments } from 'react-icons/fa'
+
+import moment from 'moment'
 
 import { AuthContext } from '../context/auth'
 import { LikeButton } from './LikeButton'
@@ -9,9 +10,7 @@ import { DeleteButton } from './DeleteButton'
 
 
 
-export const PostCard = ({
-  post: { body, createdAt, id, username, likeCount, commentCount, likes }
-}) => {
+export const PostCard = ({ post: { body, createdAt, id, username, likeCount, commentCount, likes } }) => {
   
   const { user } = useContext(AuthContext)
 

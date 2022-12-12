@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { BiLike } from 'react-icons/bi'
+
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import { BiLike } from 'react-icons/bi'
 
 
 
@@ -23,7 +24,10 @@ const LIKE_POST_MUTATION = gql`
 
 export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
 
+  // use state to monitor if post is liked or not
   const [liked, setLiked] = useState(false)
+
+
 
   useEffect(() => {
     // if user is true, that means the user is logged in
@@ -44,7 +48,7 @@ export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
   })
 
   
-
+  
   const likeButton = user ? (
     liked ? (
       <button

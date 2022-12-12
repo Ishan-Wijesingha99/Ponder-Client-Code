@@ -1,39 +1,38 @@
 import React, { useState } from 'react'
+import { MdOutlineDelete } from 'react-icons/md'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 
 import { FETCH_POSTS_QUERY } from '../util/graphql'
 
-import { MdOutlineDelete } from 'react-icons/md'
-
-import { confirmAlert } from 'react-confirm-alert'
-import 'react-confirm-alert/src/react-confirm-alert.css'
-
 
 
 export const DeleteButton = ({ postId, commentId, callback }) => {
 
-  const [confirmOpen, setConfirmOpen] = useState(false)
-
   // if commentId is passed down as a prop to this DeleteButton component, that means this delete button is being used to delete a comment, not a post
   // therefore, if commentId is true, the mutation should be DELETE_COMMENT_MUTATION, if not, it should be DELETE_POST_MUTATION
-  const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION
+  const dynamicMutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION
 
-  const [deletePostOrMutation] = useMutation(mutation, {
+  const [deletePostOrDeleteComment] = useMutation(dynamicMutation, {
     update(proxy) {
       // if the post/comment has been deleted successfully from the database, via the deletePostOrComment() function, the following code will be executed
-
-      // now that post/comment has been deleted, close confirm modal window
-      setConfirmOpen(false)
 
       // if the delete button is used to delete a post, then execute the following code
       if (!commentId) {
 
         // Remove post from cache so that the deletion of the post is reflected on the frontend without having to reload the page
+        // fetch posts from cache
         const data = proxy.readQuery({
           query: FETCH_POSTS_QUERY
         })
+
+        // filter out the post we want to delete
         data.getPosts = data.getPosts.filter((p) => p.id !== postId)
+
+        // persist the change
         proxy.writeQuery({ query: FETCH_POSTS_QUERY, data })
       }
 
@@ -46,14 +45,18 @@ export const DeleteButton = ({ postId, commentId, callback }) => {
     }
   })
 
+
+
+  // this will be executed when the delete button is clicked, a modal window will appear
   const buttonOnClick = () => {
+
     confirmAlert({
       title: 'Confirm to delete',
       message: 'Are you sure you want to delete this?',
       buttons: [
         {
-          label: 'yes',
-          onClick: () => deletePostOrMutation()
+          label: 'Yes',
+          onClick: () => deletePostOrDeleteComment()
         },
         {
           label: 'No',
@@ -61,6 +64,7 @@ export const DeleteButton = ({ postId, commentId, callback }) => {
         }
       ]
     })
+
   }
 
 

@@ -1,9 +1,13 @@
 import React, { useReducer, createContext } from 'react'
 import jwtDecode from 'jwt-decode'
 
+
+// for initial state, have user property as null
 const initialState = {
   user: null
 }
+
+
 
 if (localStorage.getItem('jwtToken')) {
   // if the jwt token exists in local storage, execute this code
@@ -20,18 +24,21 @@ if (localStorage.getItem('jwtToken')) {
 
     // if the token has expired, the initial state object should remains unchanged, it should have a user property that is null, so no need to do anything
   } else {
-    // if token has no expired, change the user property in initialState object to be the decodedToken
+    // if token has not expired, change the user property in initialState object to be the decodedToken
     initialState.user = decodedToken
   }
 }
 
-const AuthContext = createContext({
+// set up context to be used throughout application
+export const AuthContext = createContext({
   user: null,
   login: userData => {},
   logout: () => {}
 })
 
-function authReducer(state, action) {
+
+
+const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -48,19 +55,21 @@ function authReducer(state, action) {
   }
 }
 
-function AuthProvider(props) {
+export const AuthProvider = props => {
+
   const [state, dispatch] = useReducer(authReducer, initialState)
 
-  function login(userData) {
+  const login = userData => {
     // save the jwt token to local storage
     localStorage.setItem('jwtToken', userData.token)
+
     dispatch({
       type: 'LOGIN',
       payload: userData
     })
   }
 
-  function logout() {
+  const logout = () => {
     // remove jwt token from local storage
     localStorage.removeItem('jwtToken')
     
@@ -75,4 +84,3 @@ function AuthProvider(props) {
   )
 }
 
-export { AuthContext, AuthProvider }

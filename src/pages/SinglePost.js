@@ -1,8 +1,10 @@
-import React, { useContext, useState, useRef } from 'react'
+import React, { useContext, useState } from 'react'
+import { FaComments } from 'react-icons/fa'
+
 import gql from 'graphql-tag'
 import { useQuery, useMutation } from '@apollo/react-hooks'
+
 import moment from 'moment'
-import { FaComments } from 'react-icons/fa'
 
 import { AuthContext } from '../context/auth'
 import { LikeButton } from '../components/LikeButton'
@@ -63,7 +65,9 @@ export const SinglePost = props => {
     }
   })
 
-  const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
+
+
+  const [createComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
       // once a comment has been created in the database via the CREATE_COMMENT_MUTATION, we need to reset the body of the comment input field to an empty string
       setComment('')
@@ -74,10 +78,14 @@ export const SinglePost = props => {
     }
   })
 
+
+
   const onSubmitFunction = event => {
+    // prevent the default reloading of the page
     event.preventDefault()
 
-    submitComment()
+    // create comment in backend
+    createComment()
   }
 
   function deletePostCallback() {
@@ -91,18 +99,8 @@ export const SinglePost = props => {
   if (!getPost) {
     postMarkup = <p id='single-post-loading'>Loading post..</p>
   } else {
-    const {
-      id,
-      body,
-      createdAt,
-      username,
-      comments,
-      likes,
-      likeCount,
-      commentCount
-    } = getPost
 
-
+    const { id, body, createdAt, username, comments, likes, likeCount, commentCount } = getPost
 
     postMarkup = (
       <div className='single-post-container'>
@@ -235,8 +233,6 @@ export const SinglePost = props => {
       </div>
     )
   }
-
-
 
   return postMarkup
 }

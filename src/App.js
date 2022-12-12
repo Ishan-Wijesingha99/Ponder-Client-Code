@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-
-
 import { AuthProvider } from './context/auth'
 import { AuthRoute } from './util/AuthRoute'
 
@@ -26,7 +24,6 @@ export const App = () => {
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
           <Route exact path="/posts/:postId" component={SinglePost} />
-
           <Route exact path="*" component={NotFound} />
         </Switch>
       </Router>

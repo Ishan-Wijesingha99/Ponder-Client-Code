@@ -1,23 +1,47 @@
 import React, { useContext, useState } from 'react'
+
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { AuthContext } from '../context/auth'
-import { useForm } from '../util/hooks'
+import { useForm } from '../util/useForm'
 import { AlreadyLoggedIn } from '../components/AlreadyLoggedIn'
+
+
+
+const REGISTER_USER = gql`
+  mutation register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register(
+      registerInput: {
+        username: $username
+        email: $email
+        password: $password
+        confirmPassword: $confirmPassword
+      }
+    ) {
+      id
+      email
+      username
+      createdAt
+      token
+    }
+  }
+`
 
 
 
 export const Register = props => {
 
-  // even when you are logged in, the user can still type /register or /login in the url and access those pages, we need to make sure they can't access these pages
-  // this can be easily solved by conditionally rendering the register form, if the user is logged in, do not render the form
-
   const context = useContext(AuthContext)
 
   const [errors, setErrors] = useState({})
 
-  const { onChange, onSubmit, values } = useForm(registerUser, {
+  const { onChange, onSubmit, formData } = useForm(registerUser, {
     username: '',
     email: '',
     password: '',
@@ -30,6 +54,7 @@ export const Register = props => {
       // if addUser() was successful, then execute the following code
 
       // even though we are registering, the login function attached to the context can be used for both registering and logging in
+      // by this point in the code, we've added the user information to the backend database, now we just log the user in using that information
       context.login(userData)
 
       // finally, redirect to the homepage
@@ -38,11 +63,12 @@ export const Register = props => {
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors)
     },
-    variables: values
+    variables: formData
   })
 
 
 
+  // need function to be hoisted so use function declaration
   function registerUser() {
     addUser()
   }
@@ -84,7 +110,7 @@ export const Register = props => {
             label="Username"
             placeholder="Username..."
             name="username"
-            value={values.username}
+            value={formData.username}
             error={errors.username ? true : false}
             onChange={onChange}
             className='login-input-field'
@@ -101,7 +127,7 @@ export const Register = props => {
             label="Email"
             placeholder="Email..."
             name="email"
-            value={values.email}
+            value={formData.email}
             error={errors.email ? true : false}
             onChange={onChange}
             className='login-input-field'
@@ -118,7 +144,7 @@ export const Register = props => {
             label="Password"
             placeholder="Password..."
             name="password"
-            value={values.password}
+            value={formData.password}
             error={errors.password ? true : false}
             onChange={onChange}
             className='login-input-field'
@@ -135,7 +161,7 @@ export const Register = props => {
             label="Confirm Password"
             placeholder="Confirm Password..."
             name="confirmPassword"
-            value={values.confirmPassword}
+            value={formData.confirmPassword}
             error={errors.confirmPassword ? true : false}
             onChange={onChange}
             className='login-input-field'
@@ -152,13 +178,16 @@ export const Register = props => {
         )
       }
       
-      
+      {/* when form is submitted, render this element while loading */}
+      { loading && (
+        <div className='loading-form-submission'>Loading...</div>
+      )}
 
       {/* this will only be rendered if there are properties in the error object, which is only possible if the form is being rendered, so you don't need to worry about this component being rendered if the form isn't also rendered */}
       {
       Object.keys(errors).length > 0 && (
         <ul className="error-message-list">
-          {Object.values(errors).map(error => (
+          {Object.formData(errors).map(error => (
             <li
             key={error}
             className="error-message-li"
@@ -173,28 +202,3 @@ export const Register = props => {
     </div>
   )
 }
-
-const REGISTER_USER = gql`
-  mutation register(
-    $username: String!
-    $email: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    register(
-      registerInput: {
-        username: $username
-        email: $email
-        password: $password
-        confirmPassword: $confirmPassword
-      }
-    ) {
-      id
-      email
-      username
-      createdAt
-      token
-    }
-  }
-`
-

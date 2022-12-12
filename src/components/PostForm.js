@@ -1,8 +1,9 @@
 import React from 'react'
+
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 
-import { useForm } from '../util/hooks'
+import { useForm } from '../util/useForm'
 import { FETCH_POSTS_QUERY } from '../util/graphql'
 
 
@@ -35,12 +36,13 @@ const CREATE_POST_MUTATION = gql`
 
 export const PostForm = () => {
 
-  const { values, onChange, onSubmit } = useForm(createPostCallback, {
+  // get information from your custom hook, useForm()
+  const { formData, onChange, onSubmit } = useForm(createPostCallback, {
     body: ''
   })
 
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
-    variables: values,
+    variables: formData,
     update(proxy, result) {
       // once this mutation is successful, execute the following code
 
@@ -69,10 +71,11 @@ export const PostForm = () => {
       proxy.writeQuery({ query: FETCH_POSTS_QUERY, data })
 
       // reset the body once the post has been created and added to the mongoDB database
-      values.body = ''
+      formData.body = ''
     }
   })
 
+  // need this function to be hoisted to the top, so use function declaration
   function createPostCallback() {
     createPost()
   }
@@ -91,7 +94,7 @@ export const PostForm = () => {
         placeholder="Hi World!"
         name="body"
         onChange={onChange}
-        value={values.body}
+        value={formData.body}
         error={error ? true : false}
         className='create-post-form-textarea'
         rows="3"
