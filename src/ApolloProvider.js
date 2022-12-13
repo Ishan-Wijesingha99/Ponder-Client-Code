@@ -14,7 +14,7 @@ import { App } from './App'
 
 // 1
 const httpLink = createHttpLink({
-  uri: 'https://ponder-social-media-app-backend-server.onrender.com/'
+  uri: 'https://pacific-brushlands-99720.herokuapp.com/'
 })
 
 // 2
