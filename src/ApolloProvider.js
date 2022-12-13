@@ -14,7 +14,7 @@ import { App } from './App'
 
 // 1
 const httpLink = createHttpLink({
-  uri: 'https://stormy-forest-83840.herokuapp.com/'
+  uri: 'https://ponder-social-media-app-backend-server.onrender.com/'
 })
 
 // 2
