@@ -17,6 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 4rem;
 }
 
 #home-title {
@@ -33,11 +34,11 @@ body {
 /* postcard css */
 .postcard {
   margin-top: 3rem;
-  background-color: #85C7F2;
+  background-color: #C8B88A;
   padding: 2rem 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px black solid;
-  width: 300px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -46,7 +47,7 @@ body {
 
 .postcard-username {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -64,11 +65,12 @@ body {
   margin-top: 5px;
   font-style: italic;
   margin-bottom: 2px;
+  font-size: 0.8rem;
 }
 
 .postcard-span {
   width: 100%;
-  height: 2px;
+  height: 5px;
   background-color: black;
   display: block;
 }
@@ -76,7 +78,7 @@ body {
 .postcard-body {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -100,9 +102,11 @@ body {
   width: 80px;
   height: 40px;
   padding: 0.5rem;
-  border-radius: 1rem;
-  background-color: black;
+  border-radius: 0.5rem;
+  background-color: #75be5e;
+  border: 2px solid black;
   margin-right: 5px;
+  text-decoration: none;
 }
 
 .comment-like-button-link:hover {
@@ -113,7 +117,7 @@ body {
 
 .comment-button-commentCount, .like-button-likeCount {
   font-size: 1.2rem;
-  color: #85C7F2;
+  color: black;
   font-family: sans-serif;
   font-weight: 900;
 }
@@ -122,10 +126,14 @@ body {
 
 /* delete button */
 .delete-button {
-  background-color: black;
+  background-color: #75be5e;
+  border: 2px solid black;
   height: 40px;
   padding: 0.5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .delete-button:hover {
@@ -142,27 +150,27 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #85C7F2;
-  width: 332px;
+  background-color: hsl(45, 36%, 66%);
+  width: 350px;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px black solid;
 }
 
 .create-post-form-textarea {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px solid black;
   padding: 0.5rem;
-  width: 80%;
+  width: 90%;
 }
 
 .post-form-submit-button {
   width: 80px;
   height: 40px;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  color: #85C7F2;
-  background-color: black;
+  border-radius: 0.5rem;
+  color: black;
+  background-color: #75be5e;
+  border: 2px solid black;
   margin-top: 1rem;
   font-size: 1.2rem;
   font-weight: 900;
@@ -175,6 +183,24 @@ body {
   cursor: pointer;
 }
 
+.post-form-title {
+  margin-bottom: 1rem;
+}
+
+.post-form-error-message-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  background-color: red;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px black solid;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 /* login form */
@@ -184,11 +210,11 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 3rem;
-  background-color: #85C7F2;
+  background-color: #C8B88A;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px black solid;
-  width: 300px;
+  width: 350px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -198,7 +224,7 @@ body {
 }
 
 .login-input-field {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px solid black;
   padding: 0.8rem;
   width: 80%;
@@ -213,10 +239,9 @@ body {
 }
 
 .form-submit-button {
-  height: 40px;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  color: #85C7F2;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  color: #C8B88A;
   background-color: black;
   font-size: 1.2rem;
   font-weight: 900;
@@ -234,16 +259,22 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
   background-color: red;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 0.5rem;
   border: 2px black solid;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .error-message-li {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
+  list-style-type: none;
+  margin-top: 1rem;
 }
 
 .loading-form-submission {
@@ -275,15 +306,16 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 4rem;
 }
 
 .write-comment-section {
   margin-top: 1rem;
-  background-color: #85C7F2;
+  background-color: #C8B88A;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px black solid;
-  width: 300px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,7 +338,7 @@ body {
 
 .create-comment-textarea {
   width: 90%;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px solid black;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -314,10 +346,10 @@ body {
 
 .comments-section {
   padding: 1rem;
-  background-color: #85C7F2;
-  border-radius: 1rem;
+  background-color: #C8B88A;
+  border-radius: 0.5rem;
   border: 2px solid black;
-  width: 300px;
+  width: 350px;
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -328,7 +360,7 @@ body {
 .individual-comment {
   background-color: white;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 2px solid black;
   margin-bottom: 1rem;
   width: 95%;
@@ -363,7 +395,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background-color: #85C7F2;
+  background-color: #C8B88A;
   border-bottom: 2px solid black;
 }
 
@@ -383,7 +415,7 @@ body {
   font-weight: bold;
   font-style: italic;
   letter-spacing: 3px;
-  color: #75be5e;
+  color: black;
 }
 
 .navbar-right {
@@ -397,6 +429,7 @@ body {
   font-size: 1.2rem;
   font-weight: bold;
   font-style: italic;
+  text-decoration: none;
 }
 
 .home-navbar-link, .login-navbar-link, .register-navbar-link {
@@ -427,6 +460,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 4rem;
 }
 
 #not-found-title {
@@ -444,8 +478,8 @@ body {
 
 .home-button {
   padding: 1rem;
-  border-radius: 1rem;
-  color: #85C7F2;
+  border-radius: 0.5rem;
+  color: #C8B88A;
   background-color: black;
   margin-top: 1rem;
   font-size: 1.2rem;

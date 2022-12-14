@@ -130,7 +130,7 @@ export const SinglePost = props => {
             >
               <FaComments
               size={25}
-              color='#85C7F2'
+              color='black'
               />
 
               <p

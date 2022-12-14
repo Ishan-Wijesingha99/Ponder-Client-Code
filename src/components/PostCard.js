@@ -48,7 +48,7 @@ export const PostCard = ({ post: { body, createdAt, id, username, likeCount, com
           >
             <FaComments
             size={25}
-            color='#85C7F2'
+            color='black'
             />
 
             <p className='comment-button-commentCount'>{commentCount}</p>

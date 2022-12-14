@@ -55,19 +55,19 @@ export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
       className='comment-like-button-link'
       onClick={likePost}
       style={{
-        backgroundColor: '#85C7F2',
-        border: '2px solid black'
+        backgroundColor: 'black',
+        border: '2px solid #75be5e'
       }}
       >
         <BiLike 
         size={25}
-        color='black'
+        color='#75be5e'
         />
 
         <p
         className='like-button-likeCount'
         style={{
-          color: 'black'
+          color: '#75be5e'
         }}
         >{likeCount}</p>
       </button>
@@ -78,7 +78,7 @@ export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
       >
         <BiLike
         size={25}
-        color='#85C7F2'
+        color='black'
         />
 
         <p className='like-button-likeCount'>{likeCount}</p>
@@ -91,7 +91,7 @@ export const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
     >
       <BiLike
       size={25}
-      color='#85C7F2'
+      color='black'
       />
 
       <p className='like-button-likeCount'>{likeCount}</p>

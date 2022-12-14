@@ -113,7 +113,7 @@ export const PostForm = () => {
         {/* this is just in case an error occurs, there is only one possible error anyway, if we try and create a post with no body */}
         {error && (
           <div
-          className="error-message-list"
+          className="post-form-error-message-list"
           >
             <p>Body must not be empty</p>
           </div>

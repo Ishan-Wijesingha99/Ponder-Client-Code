@@ -15,9 +15,10 @@ export const Home = () => {
 
   // loading is a boolean which you can use to set up a loading screen/component
   // data is an object that has only one property, the getPosts property, which is an array
-  const { loading, data: { getPosts: posts } } = useQuery(FETCH_POSTS_QUERY)
+  const { loading, data } = useQuery(FETCH_POSTS_QUERY)
 
-
+  // data: { getPosts: posts }
+  console.log(data)
 
   return (
     <div className='home-container'>
@@ -41,7 +42,7 @@ export const Home = () => {
         
         (    
           <div>
-            {posts && posts.map(postObject => (
+            {data && data.getPosts.map(postObject => (
               <PostCard
                 key={postObject.id}
                 post={postObject}
