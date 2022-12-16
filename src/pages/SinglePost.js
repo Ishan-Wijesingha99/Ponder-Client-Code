@@ -127,6 +127,7 @@ export const SinglePost = props => {
             {/* comment button */}
             <div
             className="comment-like-button-link"
+            onClick={() => document.querySelector('.create-comment-textarea').focus()}
             >
               <FaComments
               size={25}
@@ -171,7 +172,7 @@ export const SinglePost = props => {
                 value={comment}
                 onChange={(event) => setComment(event.target.value)}
                 className="create-comment-textarea"
-                rows="3"
+                rows="4"
                 style={{
                   resize: 'none'
                 }}

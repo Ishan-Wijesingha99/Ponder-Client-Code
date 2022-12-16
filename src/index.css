@@ -76,10 +76,9 @@ body {
 }
 
 .postcard-body {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
 .postcard-button-section {
@@ -309,6 +308,10 @@ body {
   margin-bottom: 4rem;
 }
 
+.post-comment-form {
+  width: 90%;
+}
+
 .write-comment-section {
   margin-top: 1rem;
   background-color: #C8B88A;
@@ -337,7 +340,7 @@ body {
 }
 
 .create-comment-textarea {
-  width: 90%;
+  width: 100%;
   border-radius: 0.5rem;
   border: 2px solid black;
   padding: 0.5rem;
@@ -345,7 +348,7 @@ body {
 }
 
 .comments-section {
-  padding: 1rem;
+  padding-top: 1rem;
   background-color: #C8B88A;
   border-radius: 0.5rem;
   border: 2px solid black;
@@ -367,20 +370,21 @@ body {
 }
 
 #comment-username {
-  font-size: 1.3rem;
-  font-weight: bold;
   margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 #comment-time {
   margin-top: 5px;
   font-style: italic;
   margin-bottom: 2px;
+  font-size: 0.8rem;
 }
 
 #comment-body {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
 }
 
 #last-comment-span {
