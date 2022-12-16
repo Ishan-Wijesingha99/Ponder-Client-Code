@@ -50,19 +50,54 @@ export const DeleteButton = ({ postId, commentId, callback }) => {
   // this will be executed when the delete button is clicked, a modal window will appear
   const buttonOnClick = () => {
 
+    // confirmAlert({
+    //   title: 'Confirm to delete',
+    //   message: 'Are you sure you want to delete this?',
+    //   buttons: [
+    //     {
+    //       label: 'Yes',
+    //       onClick: () => deletePostOrDeleteComment()
+    //     },
+    //     {
+    //       label: 'No',
+    //       onClick: () => console.log('clicked no')
+    //     }
+    //   ]
+    // })
+
     confirmAlert({
-      title: 'Confirm to delete',
-      message: 'Are you sure you want to delete this?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => deletePostOrDeleteComment()
-        },
-        {
-          label: 'No',
-          onClick: () => console.log('clicked no')
-        }
-      ]
+      customUI: ({ onClose }) => {
+        return (
+          <div className='confirm-modal-container'>
+
+            <h1 className='confirm-modal-title'>Confirm to delete</h1>
+
+            <p className='confirm-modal-body'>Are you sure you want to delete this?</p>
+
+            <div className='confirm-modal-btn-container'>
+              <button
+              className='confirm-modal-yes'
+              onClick={() => {
+                // delete the post or comment
+                deletePostOrDeleteComment()
+                // close modal window
+                onClose()
+              }}
+              >
+                Yes
+              </button>
+
+              <button
+              className='confirm-modal-no'
+              onClick={onClose}
+              >
+                No
+              </button>
+            </div>
+            
+          </div>
+        )
+      }
     })
 
   }

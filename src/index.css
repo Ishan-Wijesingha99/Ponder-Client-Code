@@ -421,7 +421,9 @@ body {
 .navbar-right {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 136.9px;
+
 }
 
 .username-navbar-link, .logout-navbar-link, .home-navbar-link, .login-navbar-link, .register-navbar-link {
@@ -452,6 +454,16 @@ body {
   color: black;
 }
 
+@media only screen and (max-width: 650px) {
+  .username-navbar-link, .logout-navbar-link, .home-navbar-link, .login-navbar-link, .register-navbar-link {
+    font-size: 1rem;
+  }
+
+  .navbar-right {
+    justify-content: center;
+    width: auto;
+  }
+}
 
 
 /* 404 page */
@@ -492,4 +504,64 @@ body {
   scale: 1.05;
   transition: 200ms;
   cursor: pointer;
+}
+
+
+
+/* confirm delete modal */
+.confirm-modal-container {
+  background-color: #C8B88A;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 2px black solid;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-modal-body {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.confirm-modal-btn-container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-modal-yes {
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  color: black;
+  background-color: #75be5e;
+  border: 2px solid black;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  padding: 0.5rem 1rem;
+}
+
+.confirm-modal-no {
+  margin-left: 1rem;
+  border-radius: 0.5rem;
+  color: black;
+  background-color: #75be5e;
+  border: 2px solid black;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  padding: 0.5rem 1rem;
+}
+
+.confirm-modal-no:hover, .confirm-modal-yes:hover {
+  cursor: pointer;
+  scale: 1.05;
+  transition: 200ms;
 }
