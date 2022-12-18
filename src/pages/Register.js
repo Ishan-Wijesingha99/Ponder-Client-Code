@@ -111,7 +111,8 @@ export const Register = props => {
             placeholder="Username..."
             name="username"
             value={formData.username}
-            error={errors.username ? true : false}
+            // error={errors.username ? true : false}
+            error={errors.username ? "true" : "false"}
             onChange={onChange}
             className='login-input-field'
             />
@@ -128,7 +129,8 @@ export const Register = props => {
             placeholder="Email..."
             name="email"
             value={formData.email}
-            error={errors.email ? true : false}
+            // error={errors.email ? true : false}
+            error={errors.email ? "true" : "false"}
             onChange={onChange}
             className='login-input-field'
             />
@@ -145,7 +147,8 @@ export const Register = props => {
             placeholder="Password..."
             name="password"
             value={formData.password}
-            error={errors.password ? true : false}
+            // error={errors.password ? true : false}
+            error={errors.password ? "true" : "false"}
             onChange={onChange}
             className='login-input-field'
             />
@@ -162,7 +165,8 @@ export const Register = props => {
             placeholder="Confirm Password..."
             name="confirmPassword"
             value={formData.confirmPassword}
-            error={errors.confirmPassword ? true : false}
+            // error={errors.confirmPassword ? true : false}
+            error={errors.confirmPassword ? "true" : "false"}
             onChange={onChange}
             className='login-input-field'
             />

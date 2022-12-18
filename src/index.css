@@ -209,6 +209,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 3rem;
+  margin-bottom: 3rem;
   background-color: #C8B88A;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -466,6 +467,30 @@ body {
   .navbar-right {
     justify-content: center;
     width: auto;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar-right {
+    margin-top: 1rem;
+  }
+
+  .home-navbar-link, .login-navbar-link, .register-navbar-link {
+    margin-left: 0;
+  }
+
+  .login-navbar-link {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .username-navbar-link {
+    display: inline-block;
+    margin-top: 1.5rem;
   }
 }
 
